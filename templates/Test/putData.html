@@ -1,0 +1,198 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+<div class="fh5co-loader"></div>
+
+	<div id="page">
+	<nav class="fh5co-nav" role="navigation">
+		<!-- <div class="top-menu"> -->
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 text-center logo-wrap">
+						<div id="fh5co-logo"><a href="/main"><span>L</span>ook <span>A</span>fter a Child<span>.</span></a></div>
+					</div>
+					<div class="col-xs-12 text-center menu-1 menu-wrap">
+						<ul>
+							<li><a href="/main">Home</a></li>
+							<li><a href="/about">About Us</a></li>
+							<li class="has-dropdown">
+								<a href="/results">Maps</a>
+								<ul class="dropdown">
+									<li class="active"><a href="/results">시/도</a></li>
+									<li><a href="/results2">시/군/구</a></li>
+								</ul>
+							</li>
+							<li class="has-dropdown active">
+                                <a href="/inquire">Data Handling</a>
+                                <ul class="dropdown">
+									<li><a href="/inquire">조회하기</a></li>
+									<li><a href="/putData">정보입력</a></li>
+								</ul>
+							</li>
+                            <li><a href="/diary">Diary</a></li>
+                            <li><a href="/sketch">Sketch</a></li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		<!-- </div> -->
+	</nav>
+
+
+    <div id="fh5co-about" class="fh5co-section" style="background-image: url(/static/images/watercolour.jpg);">
+        <!--div class="overlay"></div-->
+		<div class="container">
+            <!--
+			<div class="row">
+				<div class="col-md-5 col-md-push-1 animate-box">
+					<div class="section-heading">
+					-->
+                        <div class="checks">
+                            <form action="/predict" method="POST">
+                                <span style="color:blue">성별 </span>
+                                <!--<!label>과 함께쓰면 텍스트를 눌러도 라디오박스가 체크된다.-->
+                                <label><input type="radio" name="sex" value="아동정보.성별_M" />남</label>
+                                <label><input type="radio" name="sex" value="아동정보.성별_F" />여</label>
+                                <label><input type="radio" name="sex" value="None" checked="checked" />정보없음</label>
+
+                                <span style="color:blue"><br>생년월일 </span>
+                                <input name="birthday" value="" type="text" id="birthday" placeholder="ex)19901231" />
+
+                                <span style="color:blue"><br>거주상태 </span>
+                                <select name="residence">
+                                    <option value="None" selected> ========== 선택 ==========</option>
+                                    <option value="아동정보.거주상태_전세">전세</option>
+                                    <option value="아동정보.거주상태_월세">월세</option>
+                                    <option value="아동정보.거주상태_보증금(전세)+월세">보증금(전세)+월세</option>
+                                    <option value="아동정보.거주상태_자택">자택</option>
+                                    <option value="아동정보.거주상태_영구임대아파트  또는 영구임대주택">영구임대아파트 또는 영구임대주택</option>
+                                    <option value="아동정보.거주상태_보호시설">보호시설</option>
+                                    <option value="아동정보.거주상태_무상">무상</option>
+                                    <option value="아동정보.거주상태_기타">기타</option>
+                                </select>
+
+                                <span style="color:blue"><br>가족유형 </span>
+                                <select name="family">
+                                    <option value="None" selected>==== 선택 ====</option>
+                                    <option value="아동정보.가족 유형_친부모가정">친부모가정</option>
+                                    <option value="아동정보.가족 유형_재혼가정">재혼가정</option>
+                                    <option value="아동정보.가족 유형_부자가족(별거)">부자가족(별거)</option>
+                                    <option value="아동정보.가족 유형_동거(사실혼포함)">동거(사실혼포함)</option>
+                                    <option value="아동정보.가족 유형_모자가족(이혼)">모자가족(이혼)</option>
+                                    <option value="아동정보.가족 유형_부자가족(이혼)">부자가족(이혼)</option>
+                                    <option value="아동정보.가족 유형_부자가족(가출)">부자가족(가출)</option>
+                                    <option value="아동정보.가족 유형_시설보호">시설보호</option>
+                                    <option value="아동정보.가족 유형_모자가족(별거)">모자가족(별거)</option>
+                                    <option value="아동정보.가족 유형_모자가족(사별)">모자가족(사별)</option>
+                                    <option value="아동정보.가족 유형_부자가족(사별)">부자가족(사별)</option>
+                                    <option value="아동정보.가족 유형_친인척보호">친인척보호</option>
+                                    <option value="아동정보.가족 유형_미혼부·모가정">미혼부·모가정</option>
+                                    <option value="아동정보.가족 유형_입양가정">입양가정</option>
+                                    <option value="아동정보.가족 유형_위탁가정">위탁가정</option>
+                                    <option value="아동정보.가족 유형_모자가족(가출)">모자가족(가출)</option>
+                                    <option value="아동정보.가족 유형_소년소녀가정">소년소녀가정</option>
+                                    <option value="아동정보.가족 유형_기타">기타</option>
+                                </select>
+
+                                <span style="color:blue"><br>가구소득구분코드 </span>
+                                <select name="income">
+                                    <option value="None" selected> ======== 선택 ========</option>
+                                    <option value="아동정보.가구 소득 구분코드_50만원미만">50만원 미만</option>
+                                    <option value="아동정보.가구 소득 구분코드_50만원이상~100만원미만">50만원 이상~100만원 미만</option>
+                                    <option value="아동정보.가구 소득 구분코드_100만원이상-150만원미만">100만원 이상~150만원 미만</option>
+                                    <option value="아동정보.가구 소득 구분코드_150만원이상-200만원미만">150만원 이상~200만원 미만</option>
+                                    <option value="아동정보.가구 소득 구분코드_200만원이상-250만원미만">200만원 이상~250만원 미만</option>
+                                    <option value="아동정보.가구 소득 구분코드_250만원이상-300만원미만">250만원 이상~300만원 미만</option>
+                                    <option value="아동정보.가구 소득 구분코드_300만원이상">300만원 이상</option>
+                                </select>
+
+                                <span style="color:blue"><br>기초생활수급유형 </span>
+                                <label><input type="radio" name="supply" value="아동정보.기초생활수급 유형_비수급권대상" />비수급권대상</label>
+                                <label><input type="radio" name="supply" value="아동정보.기초생활수급 유형_수급권대상" />수급권대상</label>
+                                <label><input type="radio" name="supply" value="None" checked="checked" />정보없음</label>
+
+                                <span style="color:blue"><br>재신고유형 </span>
+                                <select name="retype">
+                                    <option value="None" selected> ======== 선택 ========</option>
+                                    <option value="신고접수.재신고 유형_사례진행중 재신고">사례진행중 재신고</option>
+                                    <option value="신고접수.재신고 유형_동일센터 사례종결후 재신고">동일센터 사례종결 후 재신고</option>
+                                    <option value="신고접수.재신고 유형_타센터 사례종결후 재신고">타센터 사례종결 후 재신고</option>
+                                    <option value="신고접수.재신고 유형_일반상담 후 재신고">일반상담 후 재신고</option>
+                                </select>
+
+                                <span style="color:blue"><br>신고접수구분 </span>
+                                <label><input type="radio" name="receipt" value="신고접수.신고접수 구분_경찰접수" />경찰접수</label>
+                                <label><input type="radio" name="receipt" value="신고접수.신고접수 구분_아동보호전문기관접수" />아동보호전문기관접수</label>
+                                <label><input type="radio" name="receipt" value="None" checked="checked" />정보없음</label>
+
+                                <span style="color:blue"><br>피해아동상태구분 </span>
+                                <label><input type="radio" name="child" value="신고접수.피해아동 상태 구분_해당사항없음" />해당사항없음</label>
+                                <label><input type="radio" name="child" value="신고접수.피해아동 상태 구분_아동사망" />아동사망</label>
+                                <label><input type="radio" name="child" value="신고접수.피해아동 상태 구분_중상해(의식불명 포함)" />중상해(의식불명 포함)</label>
+                                <label><input type="radio" name="child" value="None" checked="checked" />정보없음</label>
+
+                                <span style="color:blue"><br>아동동거여부 </span>
+                                <label><input type="radio" name="together" value="신고접수(대상자관계).아동 동거 여부_동거" />동거</label>
+                                <label><input type="radio" name="together" value="신고접수(대상자관계).아동 동거 여부_비동거" />비동거</label>
+                                <label><input type="radio" name="together" value="None" checked="checked" />정보없음</label>
+
+                                <span style="color:blue"><br>재신고여부 </span>
+                                <label><input type="radio" name="re" value="신고접수(대상자관계).재신고 여부_Y" />예</label>
+                                <label><input type="radio" name="re" value="신고접수(대상자관계).재신고 여부_N" />아니오</label>
+                                <label><input type="radio" name="re" value="None" checked="checked" />정보없음</label>
+
+                                <span style="color:blue"><br>통계거점 </span>
+                                <select name="st">
+                                    <option value="None" selected>== 선택 ==</option>
+                                    <option value="신고접수(대상자관계).통계 거점_서울">서울</option>
+                                    <option value="신고접수(대상자관계).통계 거점_경기">경기</option>
+                                    <option value="신고접수(대상자관계).통계 거점_전남">전남</option>
+                                    <option value="신고접수(대상자관계).통계 거점_강원">강원</option>
+                                    <option value="신고접수(대상자관계).통계 거점_광주">광주</option>
+                                    <option value="신고접수(대상자관계).통계 거점_전북">전북</option>
+                                    <option value="신고접수(대상자관계).통계 거점_인천">인천</option>
+                                    <option value="신고접수(대상자관계).통계 거점_대구">대구</option>
+                                    <option value="신고접수(대상자관계).통계 거점_경북">경북</option>
+                                    <option value="신고접수(대상자관계).통계 거점_울산">울산</option>
+                                    <option value="신고접수(대상자관계).통계 거점_부산">부산</option>
+                                    <option value="신고접수(대상자관계).통계 거점_경남">경남</option>
+                                    <option value="신고접수(대상자관계).통계 거점_제주">제주</option>
+                                    <option value="신고접수(대상자관계).통계 거점_대전">대전</option>
+                                    <option value="신고접수(대상자관계).통계 거점_충남">충남</option>
+                                    <option value="신고접수(대상자관계).통계 거점_충북">충북</option>
+                                    <option value="신고접수(대상자관계).통계 거점_세종">세종</option>
+                                    <option value="신고접수(대상자관계).통계 거점_중앙">중앙</option>
+                                </select>
+
+                                <span style="color:blue"><br>학대혐의여부 </span>
+                                <label><input type="radio" name="suspicion" value="판단결과.학대 혐의 여부_Y" />예</label>
+                                <label><input type="radio" name="suspicion" value="판단결과.학대 혐의 여부_N" />아니오</label>
+                                <label><input type="radio" name="suspicion" value="None" checked="checked" />정보없음 &nbsp &nbsp &nbsp &nbsp </label>
+
+                                <button type="submit" style="color:black">검사하기</button>
+                                {% if ml_label %}
+                                    <span class="result_lable">
+                                        {{ ml_label }}
+                                    </span>
+                                {% endif %}
+                            </form>
+                        </div>
+                            
+
+					<!--
+					</div>
+				</div>
+			</div>
+			-->
+		</div>
+	</div>
+
+</body>
+{% endblock %}
