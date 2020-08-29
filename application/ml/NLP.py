@@ -54,7 +54,7 @@ def load_model():
 
     return loaded_model
 
-SW = define_stopwords("application/model/stopwords-ko.txt", encoding = 'cp949')
+SW = define_stopwords("application/model/stopwords-ko.txt", encoding = 'utf-8')
 tokenizer = joblib.load('application/model/tokenizer.pickle')
 # def text_tokenizing(doc):
 #     return [word for word in rhinoMorph.onlyMorph_list(rn,doc, pos = ['NNG', 'NNP','NP', 'VV', 'VA', 'XR', 'IC', 'MM', 'MAG', 'MAJ'], eomi = False) if word not in SW and len(word) > 1]
